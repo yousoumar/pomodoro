@@ -3,17 +3,31 @@ import { useTimerContext } from "../../contexts/TimerContext";
 import "./Watch.scss";
 interface WatchPropos {}
 
-const Watch: FC<WatchPropos> = (props) => {
-  const { isPaused, setIsPaused, isWorkingTime, setIsWorkingTime } =
-    useTimerContext();
+const Watch: FC<WatchPropos> = () => {
+  const {
+    isPaused,
+    setIsPaused,
+    isWorkingTime,
+    setIsWorkingTime,
+    reset,
+    setReset,
+  } = useTimerContext();
 
   const [secondTimer, setSecondTimer] = useState(0);
   const [minuteTimer, setMinuteTimer] = useState(1);
-
+  console.log(isPaused);
   useEffect(() => {
+    if (reset) {
+      setSecondTimer(0);
+      setMinuteTimer(1);
+      setIsPaused(true);
+      setReset(false);
+    }
+
     if (isPaused) {
       return;
     }
+
     const intervalId = setInterval(() => {
       if (secondTimer <= 0) {
         if (minuteTimer > 0) {
