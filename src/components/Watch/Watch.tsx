@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { useTimerContext } from "../../contexts/TimerContext";
 import "./Watch.scss";
-
 interface WatchPropos {}
 
 const Watch: FC<WatchPropos> = (props) => {
@@ -30,7 +29,8 @@ const Watch: FC<WatchPropos> = (props) => {
       setSecondTimer((secondTimer) => secondTimer - 1);
     }, 1000);
     return () => clearInterval(intervalId);
-  }, [isPaused, minuteTimer, secondTimer, setIsPaused]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPaused, isWorkingTime, minuteTimer, secondTimer]);
 
   const displayTimer = (timer: number) => {
     return <span>{Math.floor(timer / 10) === 0 ? "0" + timer : timer}</span>;
