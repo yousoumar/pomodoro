@@ -1,0 +1,16 @@
+.progress-circle {
+  position: absolute;
+  stroke: var(--primary);
+  fill: none;
+  pointer-events: none;
+  transform: rotate(-90deg);
+
+  circle {
+    stroke-width: 2px;
+    stroke: var(--white);
+
+    &.progress {
+      stroke: var(--primary);
+    }
+  }
+}

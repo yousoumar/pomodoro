@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useTimerContext } from "../../contexts/TimerContext";
+import ProgressCircle from "../ProgressCircle/ProgressCircle";
+
 import "./Watch.scss";
 interface WatchPropos {}
 
@@ -17,7 +19,7 @@ const Watch: FC<WatchPropos> = () => {
 
   const [minutes, setMinutes] = useState(defaultWorkMinutes);
   const [seconds, setSeconds] = useState(0);
-
+  console.log(defaultPauseMinutes, defaultWorkMinutes);
   useEffect(() => {
     if (reset) {
       setSeconds(0);
@@ -51,6 +53,7 @@ const Watch: FC<WatchPropos> = () => {
         }
         return;
       }
+
       setSeconds((seconds) => seconds - 1);
     }, 1000);
     return () => clearInterval(intervalId);
@@ -68,6 +71,12 @@ const Watch: FC<WatchPropos> = () => {
       <button onClick={() => setIsPaused(!isPaused)}>
         {isPaused ? "Start" : "Pause"}
       </button>
+      <ProgressCircle
+        progresss={minutes * 60 + seconds}
+        defaultSecondsNubmer={
+          isWorkTime ? defaultWorkMinutes * 60 : defaultPauseMinutes * 60
+        }
+      />
     </div>
   );
 };
