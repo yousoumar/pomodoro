@@ -9,8 +9,8 @@ interface ModalPropos {
 
 const Modal: FC<ModalPropos> = ({ setShowModal }) => {
   const {
-    defaultPausingMinutes,
-    defaultWorkingMinutes,
+    defaultPauseMinutes,
+    defaultWorkMinutes,
     updateMinutesNumber,
     setReset,
   } = useTimerContext();
@@ -35,7 +35,7 @@ const Modal: FC<ModalPropos> = ({ setShowModal }) => {
             <input
               type="number"
               name="work"
-              defaultValue={defaultWorkingMinutes}
+              defaultValue={defaultWorkMinutes}
             />
           </div>
           <div className="group">
@@ -43,7 +43,7 @@ const Modal: FC<ModalPropos> = ({ setShowModal }) => {
             <input
               type="number"
               name="pause"
-              defaultValue={defaultPausingMinutes}
+              defaultValue={defaultPauseMinutes}
             />
           </div>
         </div>

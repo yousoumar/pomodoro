@@ -1,4 +1,10 @@
 import { createContext, FC, useContext, useState } from "react";
+import TypedLocalStore from "typed-local-store";
+
+interface storageInterface {
+  pauseMinutes: number;
+  workMinutes: number;
+}
 
 interface contextInterface {
   isPaused: boolean;
@@ -7,8 +13,8 @@ interface contextInterface {
   setIsWorkTime: React.Dispatch<React.SetStateAction<boolean>>;
   reset: boolean;
   setReset: React.Dispatch<React.SetStateAction<boolean>>;
-  defaultPausingMinutes: number;
-  defaultWorkingMinutes: number;
+  defaultPauseMinutes: number;
+  defaultWorkMinutes: number;
   updateMinutesNumber: (type: "work" | "pause", newTimeNumber: number) => void;
 }
 const timerContext = createContext<contextInterface>({} as contextInterface);
@@ -17,8 +23,14 @@ export const useTimerContext = () => {
 };
 
 const TimerContextProvider: FC = ({ children }) => {
-  const [defaultWorkingMinutes, setDefaultWorkingMinutes] = useState(1);
-  const [defaultPausingMinutes, setDefaultPausingMinutes] = useState(1);
+  const typedStorage = new TypedLocalStore<storageInterface>();
+  const [defaultWorkMinutes, setDefaultWorkMinutes] = useState(
+    typedStorage.getItem("workMinutes") || 1
+  );
+
+  const [defaultPauseMinutes, setDefaultPauseMinutes] = useState(
+    typedStorage.getItem("pauseMinutes") || 1
+  );
   const [isPaused, setIsPaused] = useState(true);
   const [isWorkTime, setIsWorkTime] = useState(true);
   const [reset, setReset] = useState(false);
@@ -28,9 +40,11 @@ const TimerContextProvider: FC = ({ children }) => {
     newMinutesNumber: number
   ) => {
     if (type === "work") {
-      setDefaultWorkingMinutes(newMinutesNumber);
+      typedStorage.setItem("workMinutes", newMinutesNumber);
+      setDefaultWorkMinutes(newMinutesNumber);
     } else {
-      setDefaultPausingMinutes(newMinutesNumber);
+      setDefaultPauseMinutes(newMinutesNumber);
+      typedStorage.setItem("pauseMinutes", newMinutesNumber);
     }
   };
   return (
@@ -42,8 +56,8 @@ const TimerContextProvider: FC = ({ children }) => {
         setIsWorkTime,
         reset,
         setReset,
-        defaultWorkingMinutes,
-        defaultPausingMinutes,
+        defaultWorkMinutes,
+        defaultPauseMinutes,
         updateMinutesNumber,
       }}
     >

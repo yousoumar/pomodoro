@@ -13,7 +13,8 @@
     "web-vitals": "^2.1.0"
   },
   "devDependencies": {
-    "sass": "^1.47.0"
+    "sass": "^1.47.0",
+    "typed-local-store": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,5 +38,4 @@
       "last 1 safari version"
     ]
   }
- 
 }

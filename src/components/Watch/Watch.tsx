@@ -11,11 +11,11 @@ const Watch: FC<WatchPropos> = () => {
     setIsWorkTime,
     reset,
     setReset,
-    defaultWorkingMinutes,
-    defaultPausingMinutes,
+    defaultWorkMinutes,
+    defaultPauseMinutes,
   } = useTimerContext();
 
-  const [minutes, setMinutes] = useState(defaultWorkingMinutes);
+  const [minutes, setMinutes] = useState(defaultWorkMinutes);
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
@@ -24,9 +24,9 @@ const Watch: FC<WatchPropos> = () => {
       setIsPaused(true);
 
       if (isWorkTime) {
-        setMinutes(defaultWorkingMinutes);
+        setMinutes(defaultWorkMinutes);
       } else {
-        setMinutes(defaultPausingMinutes);
+        setMinutes(defaultPauseMinutes);
       }
       setReset(false);
     }
@@ -43,9 +43,9 @@ const Watch: FC<WatchPropos> = () => {
         } else {
           setSeconds(0);
           if (isWorkTime) {
-            setMinutes(defaultWorkingMinutes);
+            setMinutes(defaultWorkMinutes);
           } else {
-            setMinutes(defaultPausingMinutes);
+            setMinutes(defaultPauseMinutes);
           }
           setIsWorkTime(!isWorkTime);
         }
