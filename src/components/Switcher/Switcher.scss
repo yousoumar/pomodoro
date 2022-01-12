@@ -1,9 +1,18 @@
 .switcher {
-  h1 {
-    margin: 3rem 0;
-  }
   .buttons {
     display: flex;
-    gap: 1rem;
+
+    button {
+      &:first-child {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        border-right: none;
+      }
+      &:last-child {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        border-left: none;
+      }
+    }
   }
 }

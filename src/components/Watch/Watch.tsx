@@ -7,20 +7,27 @@ const Watch: FC<WatchPropos> = () => {
   const {
     isPaused,
     setIsPaused,
-    isWorkingTime,
-    setIsWorkingTime,
+    isWorkTime,
+    setIsWorkTime,
     reset,
     setReset,
+    defaultWorkingMinutes,
+    defaultPausingMinutes,
   } = useTimerContext();
 
-  const [secondTimer, setSecondTimer] = useState(0);
-  const [minuteTimer, setMinuteTimer] = useState(1);
-  console.log(isPaused);
+  const [minutes, setMinutes] = useState(defaultWorkingMinutes);
+  const [seconds, setSeconds] = useState(0);
+
   useEffect(() => {
     if (reset) {
-      setSecondTimer(0);
-      setMinuteTimer(1);
+      setSeconds(0);
       setIsPaused(true);
+
+      if (isWorkTime) {
+        setMinutes(defaultWorkingMinutes);
+      } else {
+        setMinutes(defaultPausingMinutes);
+      }
       setReset(false);
     }
 
@@ -29,22 +36,26 @@ const Watch: FC<WatchPropos> = () => {
     }
 
     const intervalId = setInterval(() => {
-      if (secondTimer <= 0) {
-        if (minuteTimer > 0) {
-          setSecondTimer(59);
-          setMinuteTimer((minuteTimer) => minuteTimer - 1);
+      if (seconds <= 0) {
+        if (minutes > 0) {
+          setSeconds(59);
+          setMinutes((minutes) => minutes - 1);
         } else {
-          setSecondTimer(0);
-          setMinuteTimer(1);
-          setIsWorkingTime(!isWorkingTime);
+          setSeconds(0);
+          if (isWorkTime) {
+            setMinutes(defaultWorkingMinutes);
+          } else {
+            setMinutes(defaultPausingMinutes);
+          }
+          setIsWorkTime(!isWorkTime);
         }
         return;
       }
-      setSecondTimer((secondTimer) => secondTimer - 1);
+      setSeconds((seconds) => seconds - 1);
     }, 1000);
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPaused, isWorkingTime, minuteTimer, secondTimer]);
+  }, [isPaused, isWorkTime, seconds, minutes, reset]);
 
   const displayTimer = (timer: number) => {
     return <span>{Math.floor(timer / 10) === 0 ? "0" + timer : timer}</span>;
@@ -52,7 +63,7 @@ const Watch: FC<WatchPropos> = () => {
   return (
     <div className="watch">
       <div className="counter">
-        {displayTimer(minuteTimer)} : {displayTimer(secondTimer)}
+        {displayTimer(minutes)} : {displayTimer(seconds)}
       </div>
       <button onClick={() => setIsPaused(!isPaused)}>
         {isPaused ? "Start" : "Pause"}

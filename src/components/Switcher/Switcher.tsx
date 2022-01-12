@@ -4,25 +4,24 @@ import "./Switcher.scss";
 interface SwitcherPropos {}
 
 const Switcher: FC<SwitcherPropos> = () => {
-  const { isWorkingTime, setIsWorkingTime, setReset } = useTimerContext();
+  const { isWorkTime, setIsWorkTime, setReset } = useTimerContext();
   return (
     <div className="switcher">
-      <h1>Pomodoro</h1>
       <div className="buttons">
         <button
-          className={isWorkingTime ? "active" : ""}
+          className={isWorkTime ? "active" : ""}
           onClick={() => {
             setReset(true);
-            setIsWorkingTime(true);
+            setIsWorkTime(true);
           }}
         >
           Work time
         </button>
         <button
-          className={!isWorkingTime ? "active" : ""}
+          className={!isWorkTime ? "active" : ""}
           onClick={() => {
             setReset(true);
-            setIsWorkingTime(false);
+            setIsWorkTime(false);
           }}
         >
           Pause time
