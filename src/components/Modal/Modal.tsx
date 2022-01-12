@@ -39,6 +39,8 @@ const Modal: FC<ModalPropos> = ({ setShowModal }) => {
           <div className="group">
             <span>Work minutes</span>
             <input
+              min={1}
+              max={60}
               type="number"
               name="work"
               defaultValue={defaultWorkMinutes}
@@ -47,6 +49,8 @@ const Modal: FC<ModalPropos> = ({ setShowModal }) => {
           <div className="group">
             <span>Pause minutes</span>
             <input
+              min={1}
+              max={60}
               type="number"
               name="pause"
               defaultValue={defaultPauseMinutes}
