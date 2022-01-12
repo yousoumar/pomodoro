@@ -25,16 +25,29 @@ export const useTimerContext = () => {
 const TimerContextProvider: FC = ({ children }) => {
   const typedStorage = new TypedLocalStore<storageInterface>();
   const [defaultWorkMinutes, setDefaultWorkMinutes] = useState(
-    typedStorage.getItem("workMinutes") || 1
+    getMinutesNumber("workMinutes")
   );
 
   const [defaultPauseMinutes, setDefaultPauseMinutes] = useState(
-    typedStorage.getItem("pauseMinutes") || 1
+    getMinutesNumber("pauseMinutes")
   );
   const [isPaused, setIsPaused] = useState(true);
   const [isWorkTime, setIsWorkTime] = useState(true);
   const [reset, setReset] = useState(false);
 
+  function getMinutesNumber(key: "workMinutes" | "pauseMinutes") {
+    let sotoredMinutes: number | null;
+    try {
+      sotoredMinutes = typedStorage.getItem(key);
+    } catch (error) {
+      typedStorage.setItem(key, 1);
+      return 1;
+    }
+    if (!sotoredMinutes) {
+      return 1;
+    }
+    return sotoredMinutes;
+  }
   const updateMinutesNumber = (
     type: "work" | "pause",
     newMinutesNumber: number
