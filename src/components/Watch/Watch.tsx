@@ -45,9 +45,9 @@ const Watch: FC<WatchPropos> = () => {
         } else {
           setSeconds(0);
           if (isWorkTime) {
-            setMinutes(defaultWorkMinutes);
-          } else {
             setMinutes(defaultPauseMinutes);
+          } else {
+            setMinutes(defaultWorkMinutes);
           }
           setIsWorkTime(!isWorkTime);
         }

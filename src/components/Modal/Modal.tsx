@@ -20,8 +20,14 @@ const Modal: FC<ModalPropos> = ({ setShowModal }) => {
         className="box"
         onSubmit={(e) => {
           e.preventDefault();
-          updateMinutesNumber("work", e.currentTarget.work.value.trim());
-          updateMinutesNumber("pause", e.currentTarget.pause.value.trim());
+          updateMinutesNumber(
+            "work",
+            parseInt(e.currentTarget.work.value.trim())
+          );
+          updateMinutesNumber(
+            "pause",
+            parseInt(e.currentTarget.pause.value.trim())
+          );
           setShowModal(false);
           setReset(true);
         }}
