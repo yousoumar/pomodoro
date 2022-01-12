@@ -9,10 +9,23 @@
   margin: 5rem auto;
   position: relative;
 
+  @media all and (max-width: 414px) {
+    & {
+      width: 18rem;
+      height: 18rem;
+    }
+  }
+
   .counter {
     font-size: 6rem;
     font-weight: bold;
     text-align: center;
+
+    @media all and (max-width: 414px) {
+      & {
+        font-size: 4rem;
+      }
+    }
   }
   button {
     width: max-content;

@@ -1,6 +1,8 @@
 .switcher {
   .buttons {
     display: flex;
+    max-width: 40rem;
+    margin: 0 auto;
 
     button {
       &:first-child {

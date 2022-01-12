@@ -7,7 +7,7 @@ const Header: FC<HeaderPropos> = () => {
   const [showModal, setShowModal] = useState(false);
   return (
     <div className="header">
-      <h1>Pomodoro</h1>
+      <h1>pomodoro</h1>
       <button className="setting-button" onClick={() => setShowModal(true)}>
         <svg
           aria-hidden="true"
