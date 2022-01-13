@@ -26,6 +26,21 @@
     --modal-background: rgba(255, 255, 255, 0.9);
   }
 }
+
+.light-mode {
+  --background: #ffffff;
+  --forground: #04031d;
+  --shadow: rgba(255, 255, 255, 0.2);
+  --modal-background: rgba(255, 255, 255, 0.9);
+}
+
+.dark-mode {
+  --background: #04031d;
+  --forground: #ffffff;
+  --shadow: rgba(4, 3, 29, 0.2);
+  --modal-background: rgba(4, 3, 29, 0.9);
+}
+
 .work {
   --primary: #d14d4d;
 }

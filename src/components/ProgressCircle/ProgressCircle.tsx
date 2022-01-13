@@ -12,7 +12,6 @@ const ProgressCircle: FC<ProgressCirclePropos> = ({
   progresss,
   defaultSecondsNubmer,
 }) => {
-  console.log(progresss);
   return (
     <svg
       viewBox="0 0 100 100"

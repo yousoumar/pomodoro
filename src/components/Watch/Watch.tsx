@@ -19,7 +19,7 @@ const Watch: FC<WatchPropos> = () => {
 
   const [minutes, setMinutes] = useState(defaultWorkMinutes);
   const [seconds, setSeconds] = useState(0);
-  console.log(defaultPauseMinutes, defaultWorkMinutes);
+
   useEffect(() => {
     if (reset) {
       setSeconds(0);

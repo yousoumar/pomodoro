@@ -48,6 +48,7 @@ const TimerContextProvider: FC = ({ children }) => {
     }
     return sotoredMinutes;
   }
+
   const updateMinutesNumber = (
     type: "work" | "pause",
     newMinutesNumber: number
