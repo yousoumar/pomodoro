@@ -1,23 +1,50 @@
 import { FC, useState, useEffect } from "react";
+import TypedLocalStore from "typed-local-store";
 
 import Modal from "../Modal/Modal";
 import "./Header.scss";
 
+interface storageInterface {
+  darkMode: boolean | null;
+}
+
 interface HeaderPropos {}
 
 const Header: FC<HeaderPropos> = () => {
+  const typedStorage = new TypedLocalStore<storageInterface>();
   const [showModal, setShowModal] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(getThemeMode());
+
+  function getThemeMode() {
+    let sotoredTheme: boolean | null;
+    try {
+      sotoredTheme = typedStorage.getItem("darkMode");
+    } catch (error) {
+      typedStorage.setItem("darkMode", null);
+      return null;
+    }
+
+    if (sotoredTheme === null) {
+      return null;
+    }
+    return sotoredTheme;
+  }
+
+  const updateThemeMode = (theme: boolean) => {
+    typedStorage.setItem("darkMode", theme);
+    setDarkMode(theme);
+  };
 
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark-mode");
       document.documentElement.classList.remove("light-mode");
-    } else {
+    } else if (darkMode === false) {
       document.documentElement.classList.remove("dark-mode");
       document.documentElement.classList.add("light-mode");
     }
   }, [darkMode]);
+
   return (
     <div className="header">
       <h1>pomodoro</h1>
@@ -40,7 +67,7 @@ const Header: FC<HeaderPropos> = () => {
           </svg>
           Settings
         </button>
-        <button onClick={() => setDarkMode(!darkMode)}>
+        <button onClick={() => updateThemeMode(!darkMode)}>
           <svg
             aria-hidden="true"
             focusable="false"
