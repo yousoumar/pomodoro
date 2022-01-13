@@ -9,19 +9,25 @@ const Switcher: FC<SwitcherPropos> = () => {
     <div className="switcher">
       <div className="buttons">
         <button
+          style={{ cursor: !isWorkTime ? "pointer" : "default" }}
           className={isWorkTime ? "active" : ""}
           onClick={() => {
-            setReset(true);
-            setIsWorkTime(true);
+            if (!isWorkTime) {
+              setReset(true);
+              setIsWorkTime(true);
+            }
           }}
         >
           Work time
         </button>
         <button
           className={!isWorkTime ? "active" : ""}
+          style={{ cursor: isWorkTime ? "pointer" : "default" }}
           onClick={() => {
-            setReset(true);
-            setIsWorkTime(false);
+            if (isWorkTime) {
+              setReset(true);
+              setIsWorkTime(false);
+            }
           }}
         >
           Pause time
