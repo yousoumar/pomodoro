@@ -11,18 +11,28 @@
 }
 
 :root {
-  --dark-blue: #04031d;
-  --white: #ffffff;
   --primary: #218a21;
-  --light-green: ;
+  --background: #04031d;
+  --forground: #ffffff;
+  --shadow: rgba(4, 3, 29, 0.2);
+  --modal-background: rgba(4, 3, 29, 0.9);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #ffffff;
+    --forground: #04031d;
+    --shadow: rgba(255, 255, 255, 0.2);
+    --modal-background: rgba(255, 255, 255, 0.9);
+  }
 }
 .work {
   --primary: #d14d4d;
 }
 html {
   font-family: "Quicksand", sans-serif;
-  background-color: var(--dark-blue);
-  color: var(--white);
+  background-color: var(--background);
+  color: var(--forground);
   padding: 0 1rem;
 }
 

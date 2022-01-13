@@ -1,6 +1,6 @@
 .modal {
   position: fixed;
-  background-color: rgba($color: #000000, $alpha: 0.9);
+  background-color: var(--modal-background);
   z-index: 4;
   width: 100%;
   height: 100vh;
@@ -12,8 +12,8 @@
   padding: 1rem;
 
   .box {
-    background-color: var(--white);
-    color: var(--dark-blue);
+    background-color: var(--forground);
+    color: var(--background);
     padding: 1rem;
     border-radius: 1rem;
     width: auto;
@@ -39,7 +39,7 @@
       font-weight: bold;
       gap: 0.5rem;
       height: 3rem;
-      box-shadow: 0 0 2px rgba(#000000, 0.1);
+      box-shadow: 0 0 2px var(--shadow);
       border-radius: 999px;
       padding: 0 0.5rem;
 
@@ -50,7 +50,7 @@
       }
 
       input {
-        box-shadow: inset 0 0 5px rgba(#000000, 0.3);
+        box-shadow: inset 0 0 10px var(--shadow);
       }
     }
     button {
@@ -60,7 +60,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--white);
+      color: var(--forground);
       margin: 2rem auto 0 auto;
       svg {
         width: 1.2rem;
