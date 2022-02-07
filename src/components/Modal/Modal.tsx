@@ -3,11 +3,11 @@ import { useTimerContext } from "../../contexts/TimerContext";
 
 import "./Modal.scss";
 
-interface ModalPropos {
+interface ModalProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Modal: FC<ModalPropos> = ({ setShowModal }) => {
+const Modal: FC<ModalProps> = ({ setShowModal }) => {
   const {
     defaultPauseMinutes,
     defaultWorkMinutes,

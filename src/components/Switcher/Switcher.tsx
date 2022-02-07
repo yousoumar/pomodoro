@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { useTimerContext } from "../../contexts/TimerContext";
 import "./Switcher.scss";
-interface SwitcherPropos {}
+interface SwitcherProps {}
 
-const Switcher: FC<SwitcherPropos> = () => {
+const Switcher: FC<SwitcherProps> = () => {
   const { isWorkTime, setIsWorkTime, setReset } = useTimerContext();
   return (
     <div className="switcher">

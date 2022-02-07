@@ -9,9 +9,9 @@ interface storageInterface {
   darkMode: boolean | null;
 }
 
-interface HeaderPropos {}
+interface HeaderProps {}
 
-const Header: FC<HeaderPropos> = () => {
+const Header: FC<HeaderProps> = () => {
   const typedStorage = new TypedLocalStore<storageInterface>();
   const [showModal, setShowModal] = useState(false);
   const [darkMode, setDarkMode] = useState(getThemeMode());

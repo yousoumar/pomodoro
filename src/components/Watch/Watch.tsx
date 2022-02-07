@@ -3,9 +3,9 @@ import { useTimerContext } from "../../contexts/TimerContext";
 import ProgressCircle from "../ProgressCircle/ProgressCircle";
 
 import "./Watch.scss";
-interface WatchPropos {}
+interface WatchProps {}
 
-const Watch: FC<WatchPropos> = () => {
+const Watch: FC<WatchProps> = () => {
   const {
     isPaused,
     setIsPaused,

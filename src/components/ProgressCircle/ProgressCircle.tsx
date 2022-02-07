@@ -1,14 +1,14 @@
 import { FC } from "react";
 
 import "./ProgressCircle.scss";
-interface ProgressCirclePropos {
+interface ProgressCircleProps {
   progresss: number;
   defaultSecondsNubmer: number;
 }
 
 export const circonferance = 2 * Math.PI * 49;
 
-const ProgressCircle: FC<ProgressCirclePropos> = ({
+const ProgressCircle: FC<ProgressCircleProps> = ({
   progresss,
   defaultSecondsNubmer,
 }) => {
