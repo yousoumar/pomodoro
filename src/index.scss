@@ -18,15 +18,6 @@
   --modal-background: rgba(4, 3, 29, 0.9);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #ffffff;
-    --forground: #04031d;
-    --shadow: rgba(255, 255, 255, 0.2);
-    --modal-background: rgba(255, 255, 255, 0.9);
-  }
-}
-
 .light-mode {
   --background: #ffffff;
   --forground: #04031d;

@@ -1,12 +1,11 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import TypedLocalStore from "typed-local-store";
 import { useTimerContext } from "../../contexts/TimerContext";
-
 import Modal from "../Modal/Modal";
 import "./Header.scss";
 
 interface storageInterface {
-  darkMode: boolean | null;
+  lightMode: boolean | null;
 }
 
 interface HeaderProps {}
@@ -14,14 +13,14 @@ interface HeaderProps {}
 const Header: FC<HeaderProps> = () => {
   const typedStorage = new TypedLocalStore<storageInterface>();
   const [showModal, setShowModal] = useState(false);
-  const [darkMode, setDarkMode] = useState(getThemeMode());
+  const [lightMode, setlightMode] = useState(getThemeMode());
   const { setReset } = useTimerContext();
   function getThemeMode() {
     let sotoredTheme: boolean | null;
     try {
-      sotoredTheme = typedStorage.getItem("darkMode");
+      sotoredTheme = typedStorage.getItem("lightMode");
     } catch (error) {
-      typedStorage.setItem("darkMode", null);
+      typedStorage.setItem("lightMode", null);
       return null;
     }
 
@@ -32,19 +31,19 @@ const Header: FC<HeaderProps> = () => {
   }
 
   const updateThemeMode = (theme: boolean) => {
-    typedStorage.setItem("darkMode", theme);
-    setDarkMode(theme);
+    typedStorage.setItem("lightMode", theme);
+    setlightMode(theme);
   };
 
   useEffect(() => {
-    if (darkMode) {
+    if (!lightMode) {
       document.documentElement.classList.add("dark-mode");
       document.documentElement.classList.remove("light-mode");
-    } else if (darkMode === false) {
+    } else {
       document.documentElement.classList.remove("dark-mode");
       document.documentElement.classList.add("light-mode");
     }
-  }, [darkMode]);
+  }, [lightMode]);
 
   return (
     <div className="header">
@@ -86,8 +85,8 @@ const Header: FC<HeaderProps> = () => {
           </svg>
           Settings
         </button>
-        <button onClick={() => updateThemeMode(!darkMode)}>
-          {!darkMode ? (
+        <button onClick={() => updateThemeMode(!lightMode)}>
+          {lightMode ? (
             <>
               <svg
                 aria-hidden="true"
